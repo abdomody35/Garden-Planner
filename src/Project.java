@@ -1,4 +1,21 @@
 import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import java.awt.GridLayout;
+import java.time.format.DateTimeFormatter;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 
 public class Project {
     
@@ -394,5 +411,212 @@ public class Project {
         System.out.println("Should I chop Apple Fruit ? " + apple.chop());
         System.out.println("How should I eat Apple Fruit ? " + apple.eat());
 
+
+        // GUI Starts here
+
+
+        // 1) Initial GUI
+        // Create JFrame with border layout
+        JFrame frame = new JFrame("Garden Planner");
+        frame.setLayout(new BorderLayout());
+
+        // Create JPanel p1 with flow layout
+        JPanel p1 = new JPanel(new FlowLayout());
+
+        // Create a JLabel "Select Plant" and add it to p1
+        JLabel selectLabel = new JLabel("Select Plant");
+        p1.add(selectLabel);
+
+        // Create a JComboBox with all Plant values and add it to p1
+        String[] plants = {"Vegetable", "Fruit", "Flower"};
+        JComboBox<String> plantList = new JComboBox<>(plants);
+        p1.add(plantList);
+
+        // Create JPanel p2 with flow layout
+        JPanel p2 = new JPanel(new FlowLayout());
+
+        // Create JButton "Add" and add it to p2
+        JButton addButton = new JButton("Add");
+        p2.add(addButton);
+
+        // Create JButton "Search" and add it to p2
+        JButton searchButton = new JButton("Search");
+        p2.add(searchButton);
+
+        // Create JPanel p3 with border layout and add p1 (north) and p2 (south) to it
+        JPanel p3 = new JPanel(new BorderLayout());
+        p3.add(p1, BorderLayout.NORTH);
+        p3.add(p2, BorderLayout.SOUTH);
+        p2.setBorder(new EmptyBorder(0, 50, 75, 100));
+
+        // Add p3 (west) to the frame
+        frame.add(p3, BorderLayout.WEST);
+
+
+        // 2) When Flower is selected and add button is pressed
+        // Create JPanel p4 with flow layout (left)
+        JPanel p4 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+        // Create a JLabel "Enter Flower name" and  add it to p4
+        JLabel enterNameLabel = new JLabel("Enter Flower name");
+        p4.add(enterNameLabel);
+        
+        // Create a JTextField for flower name input and add it to p4
+        final JTextField nameTextField = new JTextField(20);
+        p4.add(nameTextField);
+
+        // Create JPanel p5 with flow layout (left)
+        JPanel p5 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+        // Create a JLabel "Enter the color of the Flower" and  add it to p5
+        JLabel enterColorLabel = new JLabel("Enter the color of the Flower");
+        p5.add(enterColorLabel);
+        
+        // Create a JTextField for flower color input and add it to p5
+        final JTextField colorTextField = new JTextField(20);
+        p5.add(colorTextField);
+
+        // Create JPanel p6 with flow layout (left)
+        JPanel p6 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+        // Create a JLabel "Smell intensity of the Flower" and  add it to p5
+        JLabel smellLabel = new JLabel("Smell intensity of the Flower");
+        p6.add(smellLabel);
+
+        // Create a JComboBox with intensity values and add it to p6
+        String[] intensities = {"VeryStrong", "strong", "middle", "weak", "veryWeak"};
+        JComboBox<String> intensitiesList = new JComboBox<>(intensities);
+        p6.add(intensitiesList);
+
+        // Create JPanel p7 with flow layout (left)
+        JPanel p7 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+        // Create a JLabel "watering date/time" and add it to p7
+        JLabel waterDateLabel = new JLabel("watering date/time");
+        p7.add(waterDateLabel);
+
+        // Create a calender to pick the day from and add it to p7
+        // TODO: Create a calender
+
+        // Create a JList with all 24 hours values and add it to p7
+        String[] hours = new String[48];
+        for (int i = 0; i < 24; i++)
+        {
+            if (i % 2 == 0)
+            {
+                hours[i] = String.valueOf(i / 2) + ":00 AM";
+            }
+            else
+            {
+                hours[i] = String.valueOf(i / 2) + ":30 AM";
+            }
+        }
+        for (int i = 24; i < 48; i++)
+        {
+            if (i / 2 - 12 == 0)
+            {
+                hours[i++] = "12:00 PM";
+                hours[i] = "12:30 PM";
+                continue;
+            }
+            else if (i % 2 == 0)
+            {
+                if (i / 2 - 12 != 0)
+                {
+                    hours[i] = String.valueOf(i / 2 - 12) + ":00 PM";
+                }
+            }
+            else
+            {
+                hours[i] = String.valueOf(i / 2 - 12) + ":30 PM";
+            }
+        }
+        JComboBox<String> hourList = new JComboBox<>(hours);
+        p7.add(hourList);
+
+        // Create a JLabel "Duration" and add it to p7
+        JLabel durationLabel = new JLabel("Duration");
+        p7.add(durationLabel);
+
+        // Create a JTextField for Duration and add it to p7
+        JTextField durationField = new JTextField(10);
+        p7.add(durationField);
+
+        // Create JPanel p8 with flow layout (left)
+        JPanel p8 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+        // Create a JButton "Submit" and add it to p8
+        JButton submitBtn = new JButton("Submit");
+        p8.add(submitBtn);
+        
+        // Create JPanel p8 with grid layout (1 cloumn) and add p4, p5, p6, p7 and p8 to it
+        JPanel p9 = new JPanel(new GridLayout(0,1));
+        p9.add(p4);
+        p9.add(p5);
+        p9.add(p6);
+        p9.add(p7);
+        p9.add(p8);
+
+        // Add p9 (east) to the frame (for testing)
+        // frame.add(p9, BorderLayout.EAST);
+
+
+        // 3) When Flower is selected and search button is pressed
+        // Create JPanel p10 of flow layout
+        JPanel p10 = new JPanel();
+        p10.setBorder(new EmptyBorder(0, 0, 10, 10));
+
+        // Creata a JTextArea and add it to p10
+        JTextArea textArea = new JTextArea(21, 35);
+        textArea.setEditable(false);
+        p10.add(textArea);
+
+        // Add p10 (east) to the frame (for testing)
+        // frame.add(p10, BorderLayout.EAST);
+
+
+        // 4) When “add” button is presses for fruit
+        // Create JPanel p11 with flow layout (left)
+        JPanel p11 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+        // Create a JLabel "Enter Fruit name" and  add it to p11
+        JLabel EnterNameLabel = new JLabel("Enter Fruit name");
+        p11.add(EnterNameLabel);
+        
+        // Create a JTextField for fruit name input and add it to p11
+        final JTextField NameTextField = new JTextField(20);
+        p11.add(NameTextField);
+
+        // Create JPanel p12 with flow layout (left)
+        JPanel p12 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+        // Create a JLabel "Enter the color of the Fruit" and  add it to p12
+        JLabel EnterColorLabel = new JLabel("Enter the color of the Fruit");
+        p12.add(EnterColorLabel);
+        
+        // Create a JTextField for fruit name input and add it to p12
+        final JTextField ColorTextField = new JTextField(20);
+        p12.add(ColorTextField);
+        
+        // Create JPanel p13 with flow layout (left)
+        JPanel p13 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+        // Create a JButton "Submit" and add it to p13
+        JButton SubmitBtn = new JButton("Submit");
+        p13.add(SubmitBtn);
+
+        // Create JPanel p14 with grid layout (1 cloumn) and add p11, p12 and p13 to it
+        JPanel p14 = new JPanel(new GridLayout(0,1));
+        p14.add(p11);
+        p14.add(p12);
+        p14.add(p13);
+
+        // Add p14 (east) to the frame (for testing)
+        // frame.add(p14, BorderLayout.EAST);
+
+        // Set frame properties
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(800, 400);
+        frame.setVisible(true);
     }
 }
