@@ -12,8 +12,6 @@ import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
@@ -85,6 +83,12 @@ public class Project {
         }
 
         public void setWatered(String time, String day, String duration)
+        {
+            watering = new ArrayList<DayHr>();
+            watering.add(new DayHr(time, day, duration));
+        }
+
+        public void addWatered(String time , String day, String duration)
         {
             if (time == null)
             {
@@ -240,7 +244,6 @@ public class Project {
         {
             return this.cname;
         }
-
     }
 
     // Apple class implementation
@@ -288,7 +291,7 @@ public class Project {
     // Main function for testing purposes
     public static void main(String[] args) throws Exception 
     {
-        // Create an instance of project class since all the other classes are inner classeds of the project class
+        // Create an instance of project class since all the other classes are inner classes of the project class
         Project test = new Project();
 
         // Test Citrus class with all its methods
@@ -597,7 +600,8 @@ public class Project {
                     frame.remove(p10);
                     frame.add(p14);
                 }
-                frame.setVisible(true);
+                frame.revalidate();
+                frame.repaint();
             }
         });
 
@@ -621,7 +625,8 @@ public class Project {
                 frame.remove(p9);
                 frame.remove(p10);
                 frame.remove(p14);
-                frame.setVisible(true);
+                frame.revalidate();
+                frame.repaint();
             }
         });
 
@@ -637,7 +642,8 @@ public class Project {
                 frame.remove(p9);
                 frame.remove(p10);
                 frame.remove(p14);
-                frame.setVisible(true);
+                frame.revalidate();
+                frame.repaint();
             }
         });
 
@@ -673,7 +679,8 @@ public class Project {
                 frame.remove(p14);
                 frame.remove(p9);
                 frame.add(p10);
-                frame.setVisible(true);
+                frame.revalidate();
+                frame.repaint();
             }
         });
     }
