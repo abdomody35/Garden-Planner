@@ -1,20 +1,20 @@
 import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.GridLayout;
-import java.time.format.DateTimeFormatter;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 
 public class Project {
@@ -55,56 +55,9 @@ public class Project {
 
         public String get()
         {
-            return this.time + ", " + this.day + ", " + this.duration;
+            return this.day + ", " + this.time + ", " + this.duration;
         }
     }
-    
-    /* 
-    // DayHr class implementation which holds a list of watering time for a week
-    public class DayHr
-    {
-        private ArrayList<String> times, days, durations;
-
-        public DayHr()
-        {
-            this.times = new ArrayList<>();
-            this.times.add("10 AM");
-            this.days = new ArrayList<>();
-            this.days.add("Monday");
-            this.durations = new ArrayList<>();
-            this.durations.add("1 hr");
-        }
-
-        public DayHr(ArrayList<String> times, ArrayList<String> days, ArrayList<String> duration, ArrayList<String> durations)
-        {
-            this.times = times;
-            this.days = days;
-            this.durations = durations;
-        }
-
-        public void add(String time, String day, String duration)
-        {
-            times.add(time);
-            days.add(day);
-            durations.add(duration);
-        }
-        
-        public ArrayList<String> getTimes()
-        {
-            return this.times;
-        }
-
-        public ArrayList<String> getDays()
-        {
-            return this.days;
-        }
-
-        public ArrayList<String> getDurations()
-        {
-            return this.durations;
-        }
-    }
-    */
 
     // Plant class implementation
     public abstract class Plant 
@@ -215,6 +168,9 @@ public class Project {
     {
         int price;
 
+        abstract public String getName();
+        abstract public void setName(String name);
+
         public void setPrice(int price)
         {
             this.price = price;
@@ -240,6 +196,9 @@ public class Project {
     public abstract class Vegetable  extends Plant implements Eatable
     {
         private int Weight;
+
+        abstract public String getKind();
+        abstract public void setKind(String name);
 
         public void setWeight(int weight)
         {
@@ -496,7 +455,9 @@ public class Project {
         p7.add(waterDateLabel);
 
         // Create a calender to pick the day from and add it to p7
-        // TODO: Create a calender
+        String[] days = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+        JComboBox<String> daysList = new JComboBox<>(days);
+        p7.add(daysList);
 
         // Create a JList with all 24 hours values and add it to p7
         String[] hours = new String[48];
@@ -618,5 +579,102 @@ public class Project {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 400);
         frame.setVisible(true);
+
+
+        // Actions start here
+        // Create an Action for addButton to show the respective panel
+        addButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (plantList.getSelectedItem() == "Flower") 
+                {
+                    frame.remove(p14);
+                    frame.remove(p10);
+                    frame.add(p9);
+                }
+                else if (plantList.getSelectedItem() == "Fruit")
+                {
+                    frame.remove(p9);
+                    frame.remove(p10);
+                    frame.add(p14);
+                }
+                frame.setVisible(true);
+            }
+        });
+
+        // Create a flowerList to save all created flowers
+        ArrayList<Flower> flowerList = new ArrayList<Flower>();
+
+        // Create an action for submitBtn to create flower and add it to flowerList
+        submitBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                flowerList.add(
+                    test.new Flower(nameTextField.getText(),
+                    intensity.valueOf(String.valueOf(intensitiesList.getSelectedItem())))
+                );
+                Flower currentFlower = flowerList.get(flowerList.size() - 1);
+                currentFlower.setColor(colorTextField.getText());
+                currentFlower.setWatered(
+                        String.valueOf(daysList.getSelectedItem()),
+                        String.valueOf(hourList.getSelectedItem()),
+                        durationField.getText()
+                    );
+                frame.remove(p9);
+                frame.remove(p10);
+                frame.remove(p14);
+                frame.setVisible(true);
+            }
+        });
+
+        // Create a fruitList to save all created flowers
+        ArrayList<Fruit> fruitList = new ArrayList<Fruit>();
+
+        // Create an action for SubmitBtn to create fruit and add it to fruitList
+        SubmitBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                fruitList.add(test.new Apple(NameTextField.getText()));
+                Fruit currentFruit = fruitList.get(fruitList.size() - 1);
+                currentFruit.setColor(colorTextField.getText());
+                frame.remove(p9);
+                frame.remove(p10);
+                frame.remove(p14);
+                frame.setVisible(true);
+            }
+        });
+
+        // Create an action for searchButton to show the respective panel
+        searchButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (plantList.getSelectedItem() == "Flower") 
+                {
+                    textArea.setText(null);
+                    for (Flower flower : flowerList)
+                    {
+                        textArea.append(
+                            flower.getName() + ", " +
+                            flower.getColor() + ", " +
+                            flower.getIntensity() + ", " +
+                            flower.getWatered().get(0).get() + "\n"
+                        );
+                    }
+                }
+                else if (plantList.getSelectedItem() == "Fruit")
+                {
+                    textArea.setText(null);
+                    for (Fruit fruit : fruitList)
+                    {
+                        textArea.append(
+                            fruit.getName() + ", " +
+                            fruit.getColor() + ", " +
+                            fruit.getPrice() + ", " +
+                            fruit.getWatered().get(0).get() + "\n"
+                        );
+                    }
+                }
+                frame.remove(p14);
+                frame.remove(p9);
+                frame.add(p10);
+                frame.setVisible(true);
+            }
+        });
     }
 }
