@@ -75,6 +75,7 @@ public class Project {
 
         public void setWatered(DayHr schedule)
         {
+            watering = new ArrayList<DayHr>();
             if (schedule == null)
             {
                 schedule = new DayHr();
@@ -86,6 +87,15 @@ public class Project {
         {
             watering = new ArrayList<DayHr>();
             watering.add(new DayHr(time, day, duration));
+        }
+
+        public void addWatered(DayHr schedule)
+        {
+            if (schedule == null)
+            {
+                schedule = new DayHr();
+            }
+            watering.add(schedule);
         }
 
         public void addWatered(String time , String day, String duration)
@@ -117,7 +127,7 @@ public class Project {
         }
     }
 
-    // Eatable ınterface implementation
+    // Eatable interface implementation
     public interface Eatable 
     {
         public String chop();
