@@ -17,7 +17,7 @@ import java.awt.FlowLayout;
 
 public class Project {
     
-    // DayHr class implementation which holds a watering time for a week
+    // DayHr class implementation which holds a watering time
     public class DayHr
     {
         private String time, day, duration;
@@ -638,7 +638,7 @@ public class Project {
             public void actionPerformed(ActionEvent e) {
                 fruitList.add(test.new Apple(NameTextField.getText()));
                 Fruit currentFruit = fruitList.get(fruitList.size() - 1);
-                currentFruit.setColor(colorTextField.getText());
+                currentFruit.setColor(ColorTextField.getText());
                 frame.remove(p9);
                 frame.remove(p10);
                 frame.remove(p14);
@@ -658,9 +658,12 @@ public class Project {
                         textArea.append(
                             flower.getName() + ", " +
                             flower.getColor() + ", " +
-                            flower.getIntensity() + ", " +
-                            flower.getWatered().get(0).get() + "\n"
+                            flower.getIntensity() + ", "
                         );
+                        for (DayHr schedule : flower.getWatered())
+                        {
+                            textArea.append(schedule.get() + "\n");
+                        }
                     }
                 }
                 else if (plantList.getSelectedItem() == "Fruit")
@@ -670,10 +673,12 @@ public class Project {
                     {
                         textArea.append(
                             fruit.getName() + ", " +
-                            fruit.getColor() + ", " +
-                            fruit.getPrice() + ", " +
-                            fruit.getWatered().get(0).get() + "\n"
+                            fruit.getColor() + ", "
                         );
+                        for (DayHr schedule : fruit.getWatered())
+                        {
+                            textArea.append(schedule.get() + "\n");
+                        }
                     }
                 }
                 frame.remove(p14);
