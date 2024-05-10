@@ -558,7 +558,7 @@ public class Project {
         JLabel EnterColorLabel = new JLabel("Enter the color of the Fruit");
         p12.add(EnterColorLabel);
         
-        // Create a JTextField for fruit name input and add it to p12
+        // Create a JTextField for fruit color input and add it to p12
         final JTextField ColorTextField = new JTextField(20);
         p12.add(ColorTextField);
         
@@ -578,7 +578,48 @@ public class Project {
         // Add p14 (east) to the frame (for testing)
         // frame.add(p14, BorderLayout.EAST);
 
-        // Set frame properties
+
+        // 5) When “add” button is presses for vegetable
+        // Create JPanel p15 with flow layout (left)
+        JPanel p15 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+        // Create a JLabel "Enter Vegetable kind" and  add it to p15
+        JLabel enterKindLabel = new JLabel("Enter Vegetable kind");
+        p15.add(enterKindLabel);
+        
+        // Create a JTextField for vegetable kind input and add it to p15
+        JTextField enterKindField = new JTextField(20);
+        p15.add(enterKindField);
+
+        // Create JPanel p16 with flow layout (left)
+        JPanel p16 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+        // Create a JLabel "Enter the color of the Vegetable" and  add it to p16
+        JLabel ColorLabel = new JLabel("Enter the color of the Vegetable");
+        p16.add(ColorLabel);
+        
+        // Create a JTextField for vegetable color input and add it to p16
+        final JTextField ColorField = new JTextField(20);
+        p16.add(ColorField);
+        
+        // Create JPanel p17 with flow layout (left)
+        JPanel p17 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+        // Create a JButton "Submit" and add it to p17
+        JButton submitButton = new JButton("Submit");
+        p17.add(submitButton);
+
+        // Create JPanel p18 with grid layout (1 cloumn) and add p15, p16 and p17 to it
+        JPanel p18 = new JPanel(new GridLayout(0,1));
+        p18.add(p15);
+        p18.add(p16);
+        p18.add(p17);
+
+        // Add p18 (east) to the frame (for testing)
+        // frame.add(p18, BorderLayout.EAST);
+
+
+        // Set frame properties and make it visible
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 400);
         frame.setVisible(true);
@@ -592,13 +633,22 @@ public class Project {
                 {
                     frame.remove(p14);
                     frame.remove(p10);
+                    frame.remove(p18);
                     frame.add(p9);
                 }
                 else if (plantList.getSelectedItem() == "Fruit")
                 {
                     frame.remove(p9);
                     frame.remove(p10);
+                    frame.remove(p18);
                     frame.add(p14);
+                }
+                else
+                {
+                    frame.remove(p9);
+                    frame.remove(p10);
+                    frame.remove(p14);
+                    frame.add(p18);
                 }
                 frame.revalidate();
                 frame.repaint();
@@ -625,12 +675,13 @@ public class Project {
                 frame.remove(p9);
                 frame.remove(p10);
                 frame.remove(p14);
+                frame.remove(p18);
                 frame.revalidate();
                 frame.repaint();
             }
         });
 
-        // Create a fruitList to save all created flowers
+        // Create a fruitList to save all created fruits
         ArrayList<Fruit> fruitList = new ArrayList<Fruit>();
 
         // Create an action for SubmitBtn to create fruit and add it to fruitList
@@ -642,6 +693,25 @@ public class Project {
                 frame.remove(p9);
                 frame.remove(p10);
                 frame.remove(p14);
+                frame.remove(p18);
+                frame.revalidate();
+                frame.repaint();
+            }
+        });
+
+        // Create a vegetableList to save all created vegetables
+        ArrayList<Vegetable> vegetableList = new ArrayList<Vegetable>();
+
+        // Create an action for submitbutton to create vegetable and add it to vegetableList
+        submitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                vegetableList.add(test.new Tomato(enterKindField.getText()));
+                Vegetable currentVegetable = vegetableList.get(vegetableList.size() - 1);
+                currentVegetable.setColor(ColorField.getText());
+                frame.remove(p9);
+                frame.remove(p10);
+                frame.remove(p14);
+                frame.remove(p18);
                 frame.revalidate();
                 frame.repaint();
             }
@@ -681,8 +751,24 @@ public class Project {
                         }
                     }
                 }
+                else
+                {
+                    textArea.setText(null);
+                    for (Vegetable vegetable : vegetableList)
+                    {
+                        textArea.append(
+                            vegetable.getKind() + ", " +
+                            vegetable.getColor() + ", "
+                        );
+                        for (DayHr schedule : vegetable.getWatered())
+                        {
+                            textArea.append(schedule.get() + "\n");
+                        }
+                    }
+                }
                 frame.remove(p14);
                 frame.remove(p9);
+                frame.remove(p18);
                 frame.add(p10);
                 frame.revalidate();
                 frame.repaint();
