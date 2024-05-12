@@ -14,4 +14,9 @@ public class SubmitPanel extends JPanel
         super(new FlowLayout(FlowLayout.LEFT));
         this.add(submitButton);
     }
+
+    public JButton getSubmitButton()
+    {
+        return this.submitButton;
+    } 
 }

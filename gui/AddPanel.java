@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.GridLayout;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class AddPanel extends JPanel
@@ -19,5 +20,15 @@ public class AddPanel extends JPanel
             this.add(this.panels[i]);
         }
         this.add(submitPanel);
+    }
+
+    public JPanel[] getPanels()
+    {
+        return this.panels;
+    }
+
+    public JButton getSubmitButton()
+    {
+        return this.submitPanel.getSubmitButton();
     }
 }

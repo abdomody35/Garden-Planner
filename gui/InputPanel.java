@@ -19,4 +19,9 @@ public class InputPanel extends JPanel
         this.textField = new JTextField(width);
         this.add(this.textField);
     }
+
+    public Object getText()
+    {
+        return this.textField.getText();
+    }
 }

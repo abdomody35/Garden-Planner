@@ -23,4 +23,9 @@ public class MultipleSelectPanel extends JPanel
             this.add(this.list[i]);
         }
     }
+
+    public JComboBox<Object>[] getList()
+    {
+        return this.list;
+    }
 }

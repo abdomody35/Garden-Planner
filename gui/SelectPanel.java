@@ -19,4 +19,9 @@ public class SelectPanel extends JPanel
         this.list = new JComboBox<>(values);
         this.add(this.list);
     }
+
+    public JComboBox<Object> getList()
+    {
+        return list;
+    }
 }
