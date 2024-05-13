@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 public class AddPanel extends JPanel
 {
     SubmitPanel submitPanel = new SubmitPanel() ;
-    public JPanel panels[];
+    JPanel panels[];
 
     public AddPanel(JPanel... panels)
     {

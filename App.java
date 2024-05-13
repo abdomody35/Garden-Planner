@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import gui.AddPanel;
@@ -42,7 +43,9 @@ public class App
 
         InputPanel durationPanel = new InputPanel("Duration", 10);
 
-        flowerAddPanel.panels[flowerAddPanel.panels.length - 1].add(durationPanel);
+        JPanel[] flowerPanels = flowerAddPanel.getPanels();
+
+        flowerPanels[flowerPanels.length - 1].add(durationPanel);
 
         JTextArea textArea = new JTextArea(21, 35);
         textArea.setEditable(false);
