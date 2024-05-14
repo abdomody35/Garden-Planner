@@ -1,5 +1,7 @@
 package classes;
 
+import interfaces.Eatable;
+
 public abstract class Fruit extends Plant implements Eatable
 {
     int price;

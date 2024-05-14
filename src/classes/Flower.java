@@ -1,5 +1,7 @@
 package classes;
 
+import enums.Intensity;
+
 public class Flower extends Plant
 {
     private String name;

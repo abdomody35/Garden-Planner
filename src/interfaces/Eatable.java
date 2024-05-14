@@ -1,4 +1,4 @@
-package classes;
+package interfaces;
 
 public interface Eatable 
 {

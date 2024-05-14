@@ -11,10 +11,9 @@ import javax.swing.JPanel;
 import classes.Apple;
 import classes.Flower;
 import classes.Fruit;
-import classes.Intensity;
 import classes.Tomato;
 import classes.Vegetable;
-
+import enums.Intensity;
 import gui.AddPanel;
 import gui.ComplexPanel;
 import gui.InputPanel;

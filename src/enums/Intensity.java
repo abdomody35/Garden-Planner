@@ -1,4 +1,4 @@
-package classes;
+package enums;
 
 public enum Intensity
 {
