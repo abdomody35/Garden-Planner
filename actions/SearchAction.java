@@ -1,4 +1,4 @@
-// package actions;
+package actions;
 
 import java.util.ArrayList;
 
@@ -9,6 +9,10 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import classes.DayHr;
+import classes.Flower;
+import classes.Fruit;
+import classes.Vegetable;
 import gui.Frame;
 import gui.MainPanel;
 

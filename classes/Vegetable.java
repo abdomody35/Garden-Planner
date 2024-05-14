@@ -1,3 +1,5 @@
+package classes;
+
 public abstract class Vegetable  extends Plant implements Eatable
 {
     private int Weight;

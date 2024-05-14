@@ -1,3 +1,5 @@
+package classes;
+
 public class DayHr
 {
     private String time, day, duration;

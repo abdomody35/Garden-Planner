@@ -1,8 +1,10 @@
+package classes;
+
 public class Apple extends Fruit
 {
     String aname;
     
-    Apple(String name)
+    public Apple(String name)
     {
         this.aname = name;
     }

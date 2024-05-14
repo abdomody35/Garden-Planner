@@ -1,3 +1,5 @@
+package classes;
+
 public class Citrus extends Fruit
 {
     String cname;

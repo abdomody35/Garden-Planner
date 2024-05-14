@@ -1,3 +1,5 @@
+package classes;
+
 public enum Intensity
 {
     veryStrong,

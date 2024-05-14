@@ -1,3 +1,5 @@
+package classes;
+
 public interface Eatable 
 {
     public String chop();

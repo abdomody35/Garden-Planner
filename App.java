@@ -5,6 +5,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import actions.AddAction;
+import actions.SearchAction;
+import actions.SubmitAction;
+import classes.Flower;
+import classes.Fruit;
+import classes.Vegetable;
 import gui.AddPanel;
 import gui.ComplexPanel;
 import gui.Frame;

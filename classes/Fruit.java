@@ -1,3 +1,5 @@
+package classes;
+
 public abstract class Fruit extends Plant implements Eatable
 {
     int price;

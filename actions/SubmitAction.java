@@ -1,4 +1,4 @@
-// package actions;
+package actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,6 +7,13 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+
+import classes.Apple;
+import classes.Flower;
+import classes.Fruit;
+import classes.Intensity;
+import classes.Tomato;
+import classes.Vegetable;
 
 import gui.AddPanel;
 import gui.ComplexPanel;
