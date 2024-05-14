@@ -1,9 +1,12 @@
 import java.awt.BorderLayout;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import actions.AddAction;
 import gui.AddPanel;
+import gui.ComplexPanel;
 import gui.Frame;
 import gui.InputPanel;
 import gui.MainPanel;
@@ -21,35 +24,50 @@ public class App
         frame.add(mainPanel, BorderLayout.WEST);
         
         AddPanel vegetableAddPanel = new AddPanel(
+            options[0],
             new InputPanel("Enter Vegetable kind", 20),
             new InputPanel("Enter the color of the Vegetable", 20)
         );
 
         AddPanel fruitAddPanel = new AddPanel(
+            options[1],
             new InputPanel("Enter Fruit name", 20),
             new InputPanel("Enter the color of the Fruit", 20)
         );
 
-        String[] intensities = {"VeryStrong", "strong", "middle", "weak", "veryWeak"};
+        String[] intensities = {"veryStrong", "strong", "middle", "weak", "veryWeak"};
         String[] days = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
         String[] hours = generateHours();
 
         AddPanel flowerAddPanel = new AddPanel(
+            options[2],
             new InputPanel("Enter Flower name", 20),
             new InputPanel("Enter the color of the Flower", 20),
             new SelectPanel("Smell intensity of the Flower", intensities),
-            new MultipleSelectPanel("watering date/time", days, hours)
+            new ComplexPanel(
+            new MultipleSelectPanel("watering date/time", days, hours),
+            new InputPanel("Duration", 10)
+            )
         );
-
-        InputPanel durationPanel = new InputPanel("Duration", 10);
-
-        JPanel[] flowerPanels = flowerAddPanel.getPanels();
-
-        flowerPanels[flowerPanels.length - 1].add(durationPanel);
 
         JTextArea textArea = new JTextArea(21, 35);
         textArea.setEditable(false);
+
+        JPanel textAreaPanel = new JPanel();
+        textAreaPanel.add(textArea);
         
+        JPanel[] panels = {vegetableAddPanel, fruitAddPanel, flowerAddPanel, textAreaPanel};
+
+        ArrayList<Flower> flowerList = new ArrayList<>();
+        ArrayList<Fruit> fruitList = new ArrayList<>();
+        ArrayList<Vegetable> vegetableList = new ArrayList<>();
+
+        mainPanel.getAddButton().addActionListener(new AddAction(panels));
+        mainPanel.getSearchButton().addActionListener(new SearchAction(panels, vegetableList, fruitList, flowerList));
+        vegetableAddPanel.getSubmitButton().addActionListener(new SubmitAction(vegetableList, 0));
+        fruitAddPanel.getSubmitButton().addActionListener(new SubmitAction(fruitList, 0));
+        flowerAddPanel.getSubmitButton().addActionListener(new SubmitAction(flowerList, 0));
+
         frame.setVisible(true);
     }
 

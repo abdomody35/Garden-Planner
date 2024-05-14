@@ -7,12 +7,14 @@ import javax.swing.JPanel;
 
 public class AddPanel extends JPanel
 {
+    String name;
     SubmitPanel submitPanel = new SubmitPanel() ;
     JPanel panels[];
 
-    public AddPanel(JPanel... panels)
+    public AddPanel(String name, JPanel... panels)
     {
         super(new GridLayout(0,1));
+        this.name = name;
         this.panels = new JPanel[panels.length];
         for (int i = 0; i < panels.length; i++)
         {
@@ -25,6 +27,11 @@ public class AddPanel extends JPanel
     public JPanel[] getPanels()
     {
         return this.panels;
+    }
+
+    public String getName()
+    {
+        return this.name;
     }
 
     public JButton getSubmitButton()
