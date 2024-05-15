@@ -1,6 +1,6 @@
-package classes;
+package main.classes;
 
-import interfaces.Eatable;
+import main.interfaces.Eatable;
 
 public abstract class Fruit extends Plant implements Eatable
 {

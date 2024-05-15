@@ -1,4 +1,4 @@
-package actions;
+package main.actions;
 
 import java.util.ArrayList;
 
@@ -9,12 +9,12 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import classes.DayHr;
-import classes.Flower;
-import classes.Fruit;
-import classes.Vegetable;
-import gui.Frame;
-import gui.MainPanel;
+import main.classes.DayHr;
+import main.classes.Flower;
+import main.classes.Fruit;
+import main.classes.Vegetable;
+import main.gui.Frame;
+import main.gui.MainPanel;
 
 public class SearchAction implements ActionListener
 {

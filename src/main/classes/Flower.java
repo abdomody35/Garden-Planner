@@ -1,6 +1,6 @@
-package classes;
+package main.classes;
 
-import enums.Intensity;
+import main.enums.Intensity;
 
 public class Flower extends Plant
 {

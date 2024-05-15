@@ -1,4 +1,4 @@
-package actions;
+package main.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,17 +8,17 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-import classes.Apple;
-import classes.Flower;
-import classes.Fruit;
-import classes.Tomato;
-import classes.Vegetable;
-import enums.Intensity;
-import gui.AddPanel;
-import gui.ComplexPanel;
-import gui.InputPanel;
-import gui.SelectPanel;
-import gui.MultipleSelectPanel;
+import main.classes.Apple;
+import main.classes.Flower;
+import main.classes.Fruit;
+import main.classes.Tomato;
+import main.classes.Vegetable;
+import main.enums.Intensity;
+import main.gui.AddPanel;
+import main.gui.ComplexPanel;
+import main.gui.InputPanel;
+import main.gui.MultipleSelectPanel;
+import main.gui.SelectPanel;
 
 public class SubmitAction implements ActionListener
 {

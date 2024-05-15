@@ -1,4 +1,4 @@
-package classes;
+package main.classes;
 
 public class DayHr
 {
