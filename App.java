@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import actions.AddAction;
-import actions.SearchAction;
-import actions.SubmitAction;
-import classes.Flower;
-import classes.Fruit;
-import classes.Vegetable;
-import gui.AddPanel;
-import gui.ComplexPanel;
-import gui.Frame;
-import gui.InputPanel;
-import gui.MainPanel;
-import gui.MultipleSelectPanel;
-import gui.SelectPanel;
+import main.actions.AddAction;
+import main.actions.SearchAction;
+import main.actions.SubmitAction;
+import main.classes.Flower;
+import main.classes.Fruit;
+import main.classes.Vegetable;
+import main.gui.AddPanel;
+import main.gui.ComplexPanel;
+import main.gui.Frame;
+import main.gui.InputPanel;
+import main.gui.MainPanel;
+import main.gui.MultipleSelectPanel;
+import main.gui.SelectPanel;
 
 public class App
 {
