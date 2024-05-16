@@ -2,7 +2,9 @@ package main.classes;
 
 public class DayHr
 {
-    private String time, day, duration;
+    protected String time;
+    protected String day;
+    protected String duration;
 
     public DayHr()
     {
