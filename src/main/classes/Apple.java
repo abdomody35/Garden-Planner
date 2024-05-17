@@ -2,7 +2,7 @@ package main.classes;
 
 public class Apple extends Fruit
 {
-    String aname;
+    protected String aname;
     
     public Apple(String name)
     {
