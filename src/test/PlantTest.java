@@ -72,6 +72,15 @@ public class PlantTest extends Plant{
     }
 
     @Test
+    public void setWateredSetsTheListToTheDefaultWateringWhenGivenEmptyStrings()
+    {
+        this.setWatered("", "", "");
+        assertEquals("10 AM", this.watering.get(0).getTime());
+        assertEquals("Monday", this.watering.get(0).getDay());
+        assertEquals("1 hr", this.watering.get(0).getDuration());
+    }
+
+    @Test
     public void setWateredDeletesPreviousWaterings()
     {
         this.watering = new ArrayList<DayHr>();
@@ -93,6 +102,15 @@ public class PlantTest extends Plant{
     public void setWateredDayHrSetsTheListToTheDefaultWateringWhenGivenNull()
     {
         this.setWatered(null);
+        assertEquals("10 AM", this.watering.get(0).getTime());
+        assertEquals("Monday", this.watering.get(0).getDay());
+        assertEquals("1 hr", this.watering.get(0).getDuration());
+    }
+
+    @Test
+    public void setWateredDayHrSetsTheListToTheDefaultWateringWhenGivenEmptyDayHr()
+    {
+        this.setWatered(new DayHr());
         assertEquals("10 AM", this.watering.get(0).getTime());
         assertEquals("Monday", this.watering.get(0).getDay());
         assertEquals("1 hr", this.watering.get(0).getDuration());
@@ -126,6 +144,15 @@ public class PlantTest extends Plant{
     }
 
     @Test
+    public void addWateredAddsTheDefaultWateringWhenGivenEmptyStrings()
+    {
+        this.setWatered("", "", "");
+        assertEquals("10 AM", this.watering.get(0).getTime());
+        assertEquals("Monday", this.watering.get(0).getDay());
+        assertEquals("1 hr", this.watering.get(0).getDuration());
+    }
+
+    @Test
     public void addWateredDoesNotDeletePreviousWaterings()
     {
         this.watering = new ArrayList<DayHr>();
@@ -147,6 +174,15 @@ public class PlantTest extends Plant{
     public void addWateredDayHrAddsTheDefaultWateringWhenGivenNull()
     {
         this.setWatered(null);
+        assertEquals("10 AM", this.watering.get(0).getTime());
+        assertEquals("Monday", this.watering.get(0).getDay());
+        assertEquals("1 hr", this.watering.get(0).getDuration());
+    }
+
+    @Test
+    public void addWateredDayHrAddsTheDefaultWateringWhenGivenEmptyDayHr()
+    {
+        this.setWatered(new DayHr());
         assertEquals("10 AM", this.watering.get(0).getTime());
         assertEquals("Monday", this.watering.get(0).getDay());
         assertEquals("1 hr", this.watering.get(0).getDuration());
