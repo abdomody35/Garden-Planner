@@ -2,9 +2,9 @@ package main.classes;
 
 public class Citrus extends Fruit
 {
-    String cname;
+    protected String cname;
     
-    Citrus(String name)
+    public Citrus(String name)
     {
         this.cname = name;
     }
