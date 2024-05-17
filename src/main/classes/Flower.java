@@ -4,8 +4,8 @@ import main.enums.Intensity;
 
 public class Flower extends Plant
 {
-    private String name;
-    private Intensity smell;
+    protected String name;
+    protected Intensity smell;
 
     public Flower(String name, Intensity smell)
     {
