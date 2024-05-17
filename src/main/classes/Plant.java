@@ -20,29 +20,13 @@ public abstract class Plant
     public void setWatered(DayHr schedule)
     {
         watering = new ArrayList<DayHr>();
-        if (schedule == null)
-        {
-            schedule = new DayHr();
-        }
-        watering.add(schedule);
+        this.addWatered(schedule);
     }
 
     public void setWatered(String time, String day, String duration)
     {
         watering = new ArrayList<DayHr>();
-        if (time == null)
-        {
-            time = "10 AM";
-        }
-        if (day == null)
-        {
-            day = "Monday";
-        }
-        if (duration == null)
-        {
-            duration = "1 hr";
-        }
-        watering.add(new DayHr(time, day, duration));
+        this.addWatered(time, day, duration);
     }
 
     public void addWatered(DayHr schedule)
@@ -56,15 +40,15 @@ public abstract class Plant
 
     public void addWatered(String time , String day, String duration)
     {
-        if (time == null)
+        if (time == null || time.length() <= 0)
         {
             time = "10 AM";
         }
-        if (day == null)
+        if (day == null || day.length() <= 0)
         {
             day = "Monday";
         }
-        if (duration == null)
+        if (duration == null || duration.length() <= 0)
         {
             duration = "1 hr";
         }
