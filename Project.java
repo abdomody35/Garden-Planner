@@ -86,7 +86,7 @@ public class Project {
         public void setWatered(String time, String day, String duration)
         {
             watering = new ArrayList<DayHr>();
-            watering.add(new DayHr(time, day, duration));
+            this.addWatered(time, day, duration);
         }
 
         public void addWatered(DayHr schedule)
