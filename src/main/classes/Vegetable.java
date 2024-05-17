@@ -4,7 +4,7 @@ import main.interfaces.Eatable;
 
 public abstract class Vegetable  extends Plant implements Eatable
 {
-    private int Weight;
+    protected int Weight;
 
     abstract public String getKind();
     abstract public void setKind(String name);
