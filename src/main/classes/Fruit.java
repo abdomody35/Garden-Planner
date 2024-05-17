@@ -4,7 +4,7 @@ import main.interfaces.Eatable;
 
 public abstract class Fruit extends Plant implements Eatable
 {
-    int price;
+    protected int price;
 
     abstract public String getName();
     abstract public void setName(String name);
