@@ -76,11 +76,7 @@ public class Project {
         public void setWatered(DayHr schedule)
         {
             watering = new ArrayList<DayHr>();
-            if (schedule == null)
-            {
-                schedule = new DayHr();
-            }
-            watering.add(schedule);
+            this.addWatered(schedule);
         }
 
         public void setWatered(String time, String day, String duration)
@@ -150,7 +146,7 @@ public class Project {
         private String name;
         private intensity smell;
 
-        Flower(String name, intensity smell)
+        public Flower(String name, intensity smell)
         {
             this.name = name;
             this.smell = smell;
@@ -240,7 +236,7 @@ public class Project {
     {
         String cname;
         
-        Citrus(String name)
+        public Citrus(String name)
         {
             this.cname = name;
         }
@@ -261,7 +257,7 @@ public class Project {
     {
         String aname;
         
-        Apple(String name)
+        public Apple(String name)
         {
             this.aname = name;
         }
@@ -282,7 +278,7 @@ public class Project {
     {
         String kind;
         
-        Tomato(String kind)
+        public Tomato(String kind)
         {
             this.kind = kind;
         }
@@ -296,12 +292,48 @@ public class Project {
         {
             return this.kind;
         }
+
+        public ArrayList<String> products()
+        {
+            ArrayList<String> products = new ArrayList<String>();
+            products.add("Tomato Sauce");
+            products.add("Tomato Paste");
+            products.add("Tomato Ketchup");
+            products.add("Tomato Soup");
+            return products;
+        }
+
+        @Override
+        public void setWatered(String time, String day, String duration)
+        {
+            this.watering = new ArrayList<DayHr>();
+            if (time == null && day == null && duration == null) 
+            {
+                this.addWatered("9:00 AM", "Monday", "30 min");
+                this.addWatered("9:00 AM", "Wednesday", "30 min");
+                this.addWatered("9:00 AM", "Friday", "30 min");
+            }
+            else
+            {
+                this.addWatered(time, day, duration);
+            }
+        }
+
+        @Override
+        public ArrayList<DayHr> getWatered()
+        {
+            if (watering.size() == 0)
+            {
+                this.setWatered(null, null, null);
+            }
+            return this.watering;
+        }
     }
 
     // Main function for testing purposes
     public static void main(String[] args) throws Exception 
     {
-        // Create an instance of project class since all the other classes are inner classes of the project class
+        // Create an instance of Project class since all the other classes are inner classes of it
         Project test = new Project();
 
         // Test Citrus class with all its methods
@@ -310,9 +342,17 @@ public class Project {
         citrus.setColor("yellow");
         System.out.println("Citrus fruit has name : " + citrus.getName());
         System.out.println("Citrus fruit has color : " + citrus.getColor());
-        System.out.println("Citrus fruit has watering schedule (default, no adding) : " + citrus.getWatered().get(0).get());
+        System.out.println("Citrus fruit has watering schedule (default, no adding) : ");
+        for (DayHr x : citrus.getWatered())
+        {
+            System.out.println(x.get());
+        }
         citrus.setWatered(null, null, null);
-        System.out.println("Citrus fruit has watering schedule (after default adding) : " + citrus.getWatered().get(0).get());
+        System.out.println("Citrus fruit has watering schedule (after default adding) : ");
+        for (DayHr x : citrus.getWatered())
+        {
+            System.out.println(x.get());
+        }
         citrus.setWatered("1 PM", "Saturday", "30 min");
         System.out.println("Citrus fruit has watering schedule (after adding) : ");
         for (DayHr x : citrus.getWatered())
@@ -330,9 +370,17 @@ public class Project {
         tomato.setColor("red");
         System.out.println("Toamto vegetable has kind : " + tomato.getKind());
         System.out.println("Toamto vegetable has color : " + tomato.getColor());
-        System.out.println("Toamto vegetable has watering schedule (default, no adding) : " + tomato.getWatered().get(0).get());
+        System.out.println("Toamto vegetable has watering schedule (default, no adding) : ");
+        for (DayHr x : tomato.getWatered())
+        {
+            System.out.println(x.get());
+        }
         tomato.setWatered(null, null, null);
-        System.out.println("Toamto vegetable has watering schedule (after default adding) : " + tomato.getWatered().get(0).get());
+        System.out.println("Toamto vegetable has watering schedule (after default adding) : ");
+        for (DayHr x : tomato.getWatered())
+        {
+            System.out.println(x.get());
+        }
         tomato.setWatered("1 PM", "Saturday", "30 min");
         System.out.println("Toamto vegetable has watering schedule (after adding) : ");
         for (DayHr x : tomato.getWatered())
@@ -343,6 +391,11 @@ public class Project {
         System.out.println("The weight of the cherry tomato is : " + tomato.getWeight() + " grams");
         System.out.println("Should I chop Toamto Vegetable ? " + tomato.chop());
         System.out.println("How should I eat Toamto Vegetable ? " + tomato.eat());
+        System.out.println("What Products can be made out of Tomato Vegetable ?");
+        for (String x : tomato.products())
+        {
+            System.out.println(x);
+        }
 
         // Test Flower class with all its methods
         Flower flower = test.new Flower("orange flower", intensity.weak);
@@ -353,9 +406,17 @@ public class Project {
         flower.setColor("orange");
         System.out.println("Flower has name : " + flower.getName());
         System.out.println("Flower has color : " + flower.getColor());
-        System.out.println("Flower has watering schedule (default, no adding) : " + flower.getWatered().get(0).get());
+        System.out.println("Flower has watering schedule (default, no adding) : ");
+        for (DayHr x : flower.getWatered())
+        {
+            System.out.println(x.get());
+        }
         flower.setWatered(null, null, null);
-        System.out.println("Flower has watering schedule (after default adding) : " + flower.getWatered().get(0).get());
+        System.out.println("Flower has watering schedule (after default adding) : ");
+        for (DayHr x : flower.getWatered())
+        {
+            System.out.println(x.get());
+        }
         flower.setWatered("1 PM", "Saturday", "30 min");
         System.out.println("Flower has watering schedule (after adding) : ");
         for (DayHr x : flower.getWatered())
@@ -369,9 +430,17 @@ public class Project {
         apple.setColor("green");
         System.out.println("Apple fruit has name : " + apple.getName());
         System.out.println("Apple fruit has color : " + apple.getColor());
-        System.out.println("Apple fruit has watering schedule (default, no adding) : " + apple.getWatered().get(0).get());
+        System.out.println("Apple fruit has watering schedule (default, no adding) : ");
+        for (DayHr x : apple.getWatered())
+        {
+            System.out.println(x.get());
+        }
         apple.setWatered(null, null, null);
-        System.out.println("Apple fruit has watering schedule (after default adding) : " + apple.getWatered().get(0).get());
+        System.out.println("Apple fruit has watering schedule (after default adding) : ");
+        for (DayHr x : apple.getWatered())
+        {
+            System.out.println(x.get());
+        }
         apple.setWatered("1 PM", "Saturday", "30 min");
         System.out.println("Apple fruit has watering schedule (after adding) : ");
         for (DayHr x : apple.getWatered())
@@ -742,14 +811,26 @@ public class Project {
                     textArea.setText(null);
                     for (Flower flower : flowerList)
                     {
-                        textArea.append(
-                            flower.getName() + ", " +
-                            flower.getColor() + ", " +
-                            flower.getIntensity() + ", "
-                        );
-                        for (DayHr schedule : flower.getWatered())
+                        if (flower.getWatered().size() != 1)
                         {
-                            textArea.append(schedule.get() + "\n");
+                            textArea.append(
+                                flower.getName() + ", " +
+                                flower.getColor() + ", " +
+                                flower.getIntensity() + ", Watering times :\n"
+                            );
+                            for (DayHr schedule : flower.getWatered())
+                            {
+                                textArea.append(schedule.get() + "\n");
+                            }
+                        }
+                        else
+                        {
+                            textArea.append(
+                                flower.getName() + ", " +
+                                flower.getColor() + ", " +
+                                flower.getIntensity() + ", " +
+                                flower.getWatered().get(0).get() + "\n"
+                            );
                         }
                     }
                 }
@@ -758,13 +839,24 @@ public class Project {
                     textArea.setText(null);
                     for (Fruit fruit : fruitList)
                     {
-                        textArea.append(
-                            fruit.getName() + ", " +
-                            fruit.getColor() + ", "
-                        );
-                        for (DayHr schedule : fruit.getWatered())
+                        if (fruit.getWatered().size() != 1)
                         {
-                            textArea.append(schedule.get() + "\n");
+                            textArea.append(
+                                fruit.getName() + ", " +
+                                fruit.getColor() + ", " + ", Watering times :\n"
+                            );
+                            for (DayHr schedule : fruit.getWatered())
+                            {
+                                textArea.append(schedule.get() + "\n");
+                            }
+                        }
+                        else
+                        {
+                            textArea.append(
+                                fruit.getName() + ", " +
+                                fruit.getColor() + ", " +
+                                fruit.getWatered().get(0).get() + "\n"
+                            );
                         }
                     }
                 }
@@ -773,13 +865,24 @@ public class Project {
                     textArea.setText(null);
                     for (Vegetable vegetable : vegetableList)
                     {
-                        textArea.append(
-                            vegetable.getKind() + ", " +
-                            vegetable.getColor() + ", "
-                        );
-                        for (DayHr schedule : vegetable.getWatered())
+                        if (vegetable.getWatered().size() != 1)
                         {
-                            textArea.append(schedule.get() + "\n");
+                            textArea.append(
+                                vegetable.getKind() + ", " +
+                                vegetable.getColor() + ", " + ", Watering times :\n"
+                            );
+                            for (DayHr schedule : vegetable.getWatered())
+                            {
+                                textArea.append(schedule.get() + "\n");
+                            }
+                        }
+                        else
+                        {
+                            textArea.append(
+                                vegetable.getKind() + ", " +
+                                vegetable.getColor() + ", " +
+                                vegetable.getWatered().get(0).get() + "\n"
+                            );
                         }
                     }
                 }
