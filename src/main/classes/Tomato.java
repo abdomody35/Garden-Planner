@@ -2,7 +2,7 @@ package main.classes;
 
 public class Tomato extends Vegetable
 {
-    String kind;
+    protected String kind;
     
     public Tomato(String kind)
     {
