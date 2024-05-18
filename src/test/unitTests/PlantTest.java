@@ -12,7 +12,8 @@ import org.junit.Test;
 import main.classes.DayHr;
 import main.classes.Plant;
 
-public class PlantTest extends Plant{
+public class PlantTest extends Plant
+{
 
     @Before
     public void setUp()
