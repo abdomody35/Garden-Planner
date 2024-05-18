@@ -194,7 +194,7 @@ public class PlantTest extends Plant{
     }
 
     @Test
-    public void getWateredReturnsTheDefaultWateringWhenWateringIsNull()
+    public void getWateredReturnsTheDefaultWateringWhenWateringIsEmpty()
     {
         var test = new ArrayList<DayHr>();
         test.add(new DayHr("10 AM", "Monday", "1 hr"));
