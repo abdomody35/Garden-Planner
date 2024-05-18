@@ -1,55 +1,55 @@
-package test;
+package test.unitTests;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import main.classes.Vegetable;
+import main.classes.Fruit;
 
-public class VegetableTest extends Vegetable
+public class FruitTest extends Fruit
 {
     
     @Before
     public void setUp() 
     {
-        this.Weight = 0;
+        this.price = 0;
     }
 
     @Test
-    public void setWeightSetsTheGivenWeight()
+    public void sePricetSetsTheGivenPrice()
     {
-        this.setWeight(10);
-        assertEquals(10, this.Weight, 0);
+        this.setPrice(10);
+        assertEquals(10, this.price, 0);
     }
 
     @Test
-    public void getWeightReturnsTheWeight()
+    public void getPriceReturnsThePrice()
     {
-        this.Weight = 10;
-        assertEquals(10, this.getWeight());
+        this.price = 10;
+        assertEquals(10, this.getPrice());
     }
 
     @Test
     public void chopReturnsTheCorrectVersion()
     {
-        assertEquals("chop the vegetable dont byte it", this.chop());
+        assertEquals("don't chop the fruit byte it", this.chop());
     }
 
     @Test
     public void eatReturnsTheCorrectVersion()
     {
-        assertEquals("you should eat vegetables cooked", this.eat());
+        assertEquals("you should eat fruits raw", this.eat());
     }
 
     @Override
-    public String getKind() {
+    public String getName() {
         // function to be implemented by subclasses of vegetable
         throw new UnsupportedOperationException("Unimplemented method 'getKind'");
     }
 
     @Override
-    public void setKind(String name) {
+    public void setName(String name) {
         // function to be implemented by subclasses of vegetable
         throw new UnsupportedOperationException("Unimplemented method 'setKind'");
     }

@@ -1,16 +1,16 @@
-package test;
+package test.unitTests;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import main.classes.Tomato;
+import main.classes.Apple;
 
-public class TomatoTest extends Tomato
+public class AppleTest extends Apple
 {
     
-    public TomatoTest() {
+    public AppleTest() {
         super(null);
         // nothing to do.
     }
@@ -18,21 +18,21 @@ public class TomatoTest extends Tomato
     @Before
     public void setUp() 
     {
-        this.kind = null;
+        this.aname = null;
     }
 
     @Test
     public void sePricetSetsTheGivenPrice()
     {
-        this.setKind("test");
-        assertEquals("test", this.kind);
+        this.setName("test");
+        assertEquals("test", this.aname);
     }
 
     @Test
     public void getPriceReturnsThePrice()
     {
-        this.kind = "test";
-        assertEquals("test", this.getKind());
+        this.aname = "test";
+        assertEquals("test", this.getName());
     }
 
 }
