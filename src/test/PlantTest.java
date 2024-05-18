@@ -40,15 +40,11 @@ public class PlantTest extends Plant{
     {
         this.color = "red";
         assertEquals("red", this.getColor());
-        this.color = null;
-        assertNull(this.getColor());
     }
 
     @Test
     public void getColorReturnsNullWhenTheColorIsNull() 
     {
-        this.color = "red";
-        assertEquals("red", this.getColor());
         this.color = null;
         assertNull(this.getColor());
     }
