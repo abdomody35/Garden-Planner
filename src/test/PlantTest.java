@@ -124,7 +124,7 @@ public class PlantTest extends Plant{
     @Test
     public void addWateredAddsTheGivenWatering()
     {
-        this.setWatered("1 pm", "Tue",  "30 min");
+        this.addWatered("1 pm", "Tue",  "30 min");
         assertEquals("1 pm", this.watering.get(0).getTime());
         assertEquals("Tue", this.watering.get(0).getDay());
         assertEquals("30 min", this.watering.get(0).getDuration());
@@ -133,7 +133,7 @@ public class PlantTest extends Plant{
     @Test
     public void addWateredAddsTheDefaultWateringWhenGivenNull()
     {
-        this.setWatered(null, null, null);
+        this.addWatered(null, null, null);
         assertEquals("10 AM", this.watering.get(0).getTime());
         assertEquals("Monday", this.watering.get(0).getDay());
         assertEquals("1 hr", this.watering.get(0).getDuration());
@@ -142,7 +142,7 @@ public class PlantTest extends Plant{
     @Test
     public void addWateredAddsTheDefaultWateringWhenGivenEmptyStrings()
     {
-        this.setWatered("", "", "");
+        this.addWatered("", "", "");
         assertEquals("10 AM", this.watering.get(0).getTime());
         assertEquals("Monday", this.watering.get(0).getDay());
         assertEquals("1 hr", this.watering.get(0).getDuration());
@@ -153,14 +153,14 @@ public class PlantTest extends Plant{
     {
         this.watering = new ArrayList<DayHr>();
         this.watering.add(new DayHr(null, null,  null));
-        this.setWatered(null, null, null);
-        assertEquals(1, this.watering.size());
+        this.addWatered(null, null, null);
+        assertEquals(2, this.watering.size());
     }
 
     @Test
     public void addWateredDayHrAddsTheGivenWatering()
     {
-        this.setWatered(new DayHr("1 pm", "Tue",  "30 min"));
+        this.addWatered(new DayHr("1 pm", "Tue",  "30 min"));
         assertEquals("1 pm", this.watering.get(0).getTime());
         assertEquals("Tue", this.watering.get(0).getDay());
         assertEquals("30 min", this.watering.get(0).getDuration());
@@ -169,7 +169,7 @@ public class PlantTest extends Plant{
     @Test
     public void addWateredDayHrAddsTheDefaultWateringWhenGivenNull()
     {
-        this.setWatered(null);
+        this.addWatered(null);
         assertEquals("10 AM", this.watering.get(0).getTime());
         assertEquals("Monday", this.watering.get(0).getDay());
         assertEquals("1 hr", this.watering.get(0).getDuration());
@@ -178,7 +178,7 @@ public class PlantTest extends Plant{
     @Test
     public void addWateredDayHrAddsTheDefaultWateringWhenGivenEmptyDayHr()
     {
-        this.setWatered(new DayHr());
+        this.addWatered(new DayHr());
         assertEquals("10 AM", this.watering.get(0).getTime());
         assertEquals("Monday", this.watering.get(0).getDay());
         assertEquals("1 hr", this.watering.get(0).getDuration());
@@ -189,8 +189,8 @@ public class PlantTest extends Plant{
     {
         this.watering = new ArrayList<DayHr>();
         this.watering.add(new DayHr(null, null, null));
-        this.setWatered(new DayHr(null, null, null));
-        assertEquals(1, this.watering.size());
+        this.addWatered(new DayHr(null, null, null));
+        assertEquals(2, this.watering.size());
     }
 
     @Test
