@@ -7,12 +7,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 
 public class Project {
@@ -600,6 +602,9 @@ public class Project {
         p9.add(p7);
         p9.add(p8);
 
+        // Set a raised bavelborder to p9 to match the gui required
+        p9.setBorder(new BevelBorder(BevelBorder.RAISED, Color.GRAY, Color.GRAY));
+
         // Add p9 (east) to the frame (for testing)
         // frame.add(p9, BorderLayout.EAST);
 
@@ -654,6 +659,9 @@ public class Project {
         p14.add(p12);
         p14.add(p13);
 
+        // Set a raised bavelborder to p14 to match the gui required
+        p14.setBorder(new BevelBorder(BevelBorder.RAISED, Color.GRAY, Color.GRAY));
+
         // Add p14 (east) to the frame (for testing)
         // frame.add(p14, BorderLayout.EAST);
 
@@ -693,6 +701,9 @@ public class Project {
         p18.add(p15);
         p18.add(p16);
         p18.add(p17);
+
+        // Set a raised bavelborder to p18 to match the gui required
+        p18.setBorder(new BevelBorder(BevelBorder.RAISED, Color.GRAY, Color.GRAY));
 
         // Add p18 (east) to the frame (for testing)
         // frame.add(p18, BorderLayout.EAST);
@@ -769,17 +780,24 @@ public class Project {
         // Create an action for SubmitBtn to create fruit and add it to fruitList
         SubmitBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                fruitList.add(test.new Apple(NameTextField.getText()));
+                if (NameTextField.getText().toLowerCase().contains("apple"))
+                {
+                    fruitList.add(test.new Apple(NameTextField.getText()));
+                }
+                else
+                {
+                    fruitList.add(test.new Citrus(NameTextField.getText()));
+                }
                 Fruit currentFruit = fruitList.get(fruitList.size() - 1);
-                currentFruit.setColor(ColorTextField.getText());
-                frame.remove(p9);
-                frame.remove(p10);
-                frame.remove(p14);
-                frame.remove(p18);
-                frame.revalidate();
-                frame.repaint();
-                NameTextField.setText(null);
-                ColorTextField.setText(null);
+                    currentFruit.setColor(ColorTextField.getText());
+                    frame.remove(p9);
+                    frame.remove(p10);
+                    frame.remove(p14);
+                    frame.remove(p18);
+                    frame.revalidate();
+                    frame.repaint();
+                    NameTextField.setText(null);
+                    ColorTextField.setText(null);
             }
         });
 
@@ -855,7 +873,7 @@ public class Project {
                             textArea.append(
                                 fruit.getName() + ", " +
                                 fruit.getColor() + ", " +
-                                fruit.getWatered().get(0).get() + "\n"
+                                fruit.getWatered().get(0).get() /* + fruit.getClass().toString() */ + "\n"
                             );
                         }
                     }
